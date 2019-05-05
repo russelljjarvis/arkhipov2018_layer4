@@ -19,7 +19,7 @@ def connectcells(con_path, cells_db, utils_obj):
     if (int(pc.id()) == 0):
       if ( progress_k % 10 == 0 ):
         tmp1 = 100.0 * progress_k / len(cells)
-        print "Establishing connections; progress: %.5f percent." % (tmp1)
+        print("Establishing connections; progress: %.5f percent." % (tmp1))
 
     progress_k += 1
 

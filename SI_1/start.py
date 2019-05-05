@@ -34,8 +34,8 @@ def run_simulation(config_f_name):
   if (int(pc.id()) == 0):
     if not os.path.exists(workdir_n):
       os.mkdir(workdir_n)
-    print 'Workdir: %s.' % workdir_n
-    print ''
+    print('Workdir: %s.' % workdir_n)
+    print('')
 
   pc.barrier() # Wait for all hosts to get to this point
 
@@ -55,7 +55,7 @@ def run_simulation(config_f_name):
   # Go over all source of external inputs and instantiate them for the appropriate cells.
   for ext_inp_path in reversed(utils_obj.description.data['ext_inputs'].keys()):
     if not os.path.exists(ext_inp_path):
-      print "Error: the external inputs file %s does not exist; exiting." % (ext_inp_path)
+      print("Error: the external inputs file %s does not exist; exiting." % (ext_inp_path))
       h.finish()  
 
     ext_inp_map = pd.read_csv(utils_obj.description.data['ext_inputs'][ext_inp_path]['map'], sep=' ')
