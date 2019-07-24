@@ -71,7 +71,7 @@ class Utils(HocUtils):
             self.generate_morphology(cell, morphology_path)
             self.load_cell_parameters(cell, fit_ids[db.ix[gid]['type']])
 
-            print 'gid:',gid, ' ', db.ix[gid]['type']
+            print('gid:',gid, ' ', db.ix[gid]['type'])
 
         return cells
     
@@ -130,6 +130,7 @@ class Utils(HocUtils):
             sections = [s for s in cell.all if s.name().split(".")[1][:4] == p["section"]]
             for sec in sections:
                 if p["mechanism"] != "":
+                    print(p["mechanism"])
                     sec.insert(p["mechanism"])
                 setattr(sec, p["name"], p["value"])
         
@@ -168,7 +169,7 @@ class Utils(HocUtils):
             src_gids = indices[indptr[tar_gid]:indptr[tar_gid+1]]
             nsyns = data[indptr[tar_gid]:indptr[tar_gid+1]] # read from hdf5 nsyns and src_gids for a tar_gid
 
-            print 'tar_gid:',tar_gid,' src_gids:', src_gids, 'nsyn:',nsyns
+            print('tar_gid:',tar_gid,' src_gids:', src_gids, 'nsyn:',nsyns)
             tar_type = db.ix[tar_gid]['type']
              
             for src_gid,nsyn in zip(src_gids,nsyns):
@@ -231,7 +232,7 @@ class Utils(HocUtils):
         delay = stim_params["delay"]
         dur = stim_params["dur"]
         amps = stim_params["amps"]
-        print stim_params
+        print(stim_params)
 
 
         stims = {}

@@ -43,17 +43,24 @@ def con_src_tar(src_obj_list, src_type, tar_gid, target, external_flag, utils_ob
 
 
   # Establish connections.
-  for j in xrange(len(tar_obj_list)): # Use len(tar_obj_list) here to make sure that for LIF neurons we use 1 synapse instead of N_syn synapses.
+  for j in range(0,len(tar_obj_list)): # Use len(tar_obj_list) here to make sure that for LIF neurons we use 1 synapse instead of N_syn synapses.
 
     if (external_flag == 'external'):
-      nc = h.NetCon(src_obj_list[j], tar_obj_list[j])
+      #import pdb
+      #pdb.set_trace()
+      try:
+        nc = h.NetCon(src_obj_list[j], tar_obj_list[j])
+      except:
+        pass
+        #print(src_obj_list[j],tar_obj_list[j])
     else:
       # Here, src_obj_list should be the list of source gids.
       nc = pc.gid_connect(src_obj_list[j], tar_obj_list[j])
-
-    nc.weight[0] = syn_weight_list[j]
-    nc.delay = syn_data_types_tmp['delay']
-
+    try:
+      nc.weight[0] = syn_weight_list[j]
+      nc.delay = syn_data_types_tmp['delay']
+    except:
+      nc = None
     common_nc_list.append(nc)
 
 

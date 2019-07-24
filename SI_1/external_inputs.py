@@ -11,8 +11,11 @@ import matplotlib.pyplot as plt
 ext_in_netstim_list = []
 ext_in_vecstim_list = []
 ext_in_train_vec_list = []
+ext_in_vectstim = None
+#import pdb
+#pdb.set_trace()
+#ext_in_vecstim = h.VecEvent()
 ext_in_vecstim = h.VecStim()
-
 
 def external_inputs(ext_in_tar_cell_gid, ext_inp_path, tar_ext_inp_map, ext_inp_dict, t_stop, utils_obj):
 
@@ -80,11 +83,12 @@ def external_inputs(ext_in_tar_cell_gid, ext_inp_path, tar_ext_inp_map, ext_inp_
         for x in spike_t_current:
           ext_in_train_vec.append(x)
         ext_in_train_vec_list.append(ext_in_train_vec)
+        '''
         ext_in_vecstim = h.VecStim()
         ext_in_vecstim_list.append(ext_in_vecstim)
         ext_in_vecstim.play(ext_in_train_vec)
         src_obj_list.append(ext_in_vecstim)
-
+        '''
     w_multiplier = 1.0
 
     con_src_tar(src_obj_list, presyn_type[i_line], ext_in_tar_cell_gid, target, 'external', utils_obj, d_f_dict, w_multiplier)

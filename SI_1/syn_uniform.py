@@ -1,7 +1,7 @@
 from common import *
 import sys
 import numpy as np
-
+xrange = range
 def syn_uniform(N_syn, tar_gid, target_cell, sec_labels, d_cutoff, rand_t, d_f_dict):
   syn_list = []
 

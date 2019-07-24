@@ -11,7 +11,7 @@ def mkcells(cells_db, utils_obj):
     #print rank, gid
     if (int(pc.id()) == 0):
       if ( gid % 5 == 0 ):
-        print "Instantiating cells; progress: %.5f percent." % (100.0 * gid / cell_displ[-1])
+        print("Instantiating cells; progress: %.5f percent." % (100.0 * gid / cell_displ[-1]))
 
     tmp_type = cells_db.type[gid]
     tmp_morph = cells_db.morphology[gid]
@@ -32,7 +32,7 @@ def mkcells(cells_db, utils_obj):
     # Create numpy arays with sections and distances from the soma for each section (closest and furthest distances).
     # Do this for all cells that have morphologies.
     if (tmp_morph != 'None'):
-      print tmp_morph
+      print(tmp_morph)
       sec_list = h.SectionList()
       sec_label = []
       for sec in cells[gid].somatic:

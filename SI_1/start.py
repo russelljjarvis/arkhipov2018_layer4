@@ -28,20 +28,22 @@ def run_simulation(config_f_name):
   cells_db = utils_obj.load_cell_db() # Load the information about individual cells.
 
   utils_obj.set_run_params()  # set h.dt and h.tsop
-
+  
 
   workdir_n = str(utils_obj.description.data['biophys'][0]['output_dir'])
   if (int(pc.id()) == 0):
     if not os.path.exists(workdir_n):
       os.mkdir(workdir_n)
-    print 'Workdir: %s.' % workdir_n
-    print ''
+    print('Workdir: %s.' % workdir_n)
+    print('')
 
   pc.barrier() # Wait for all hosts to get to this point
 
   instantiate_cells_and_cell_types(cells_db)
-
+  
   mkcells(cells_db, utils_obj)
+  import pdb
+  pdb.set_trace()
   pc.barrier()
 
   utils_obj.load_syn_data() # Load synaptic parameters (for types of sources and targets).
@@ -53,9 +55,9 @@ def run_simulation(config_f_name):
   pc.barrier()
 
   # Go over all source of external inputs and instantiate them for the appropriate cells.
-  for ext_inp_path in reversed(utils_obj.description.data['ext_inputs'].keys()):
+  for ext_inp_path in reversed(list(utils_obj.description.data['ext_inputs'].keys())):
     if not os.path.exists(ext_inp_path):
-      print "Error: the external inputs file %s does not exist; exiting." % (ext_inp_path)
+      print("Error: the external inputs file %s does not exist; exiting." % (ext_inp_path))
       h.finish()  
 
     ext_inp_map = pd.read_csv(utils_obj.description.data['ext_inputs'][ext_inp_path]['map'], sep=' ')
